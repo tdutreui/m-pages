@@ -1,0 +1,29 @@
+
+#page_body {
+    overflow: hidden;
+    resize: none;
+    font-size: 22px;
+    background-color: #f5f5f5;
+}
+
+.table {
+    margin-top: 50px;
+    margin-bottom: 0px;
+}
+
+.note-img img {
+    max-width: 50px;
+    height: auto;
+}
+
+.borderless {
+    border: none;
+    tbody > tr {
+	td {
+	    border: none;
+	}
+	th {
+	    border: none;
+	}
+    }
+}

@@ -1,0 +1,80 @@
+
+/* afterload actions */
+
+$(document).ready(function () {
+    $('#page_body').autosize();
+    $('#page_body').keyup(onTextChange);
+});
+
+/* afterload actions - end */
+
+/* Main change event */
+var isSavePlanned;
+function onTextChange(e) {
+    handleGraphics(e);
+    if (!isSavePlanned)
+    {
+	isSavePlanned=true;
+	setTimeout(function() {
+	    updatePage();
+	    isSavePlanned=false;
+	},10000);
+    }
+}
+
+
+function getFormattedTime(time)
+{
+    return(time.getHours() + ":" +("0" + time.getMinutes()).slice(-2));
+}
+
+/* Ajax call and callback */
+function updatePage() {
+    var form = $('#current_page');
+    if(!form.length) return;//writing page already quit
+    $.ajax({
+	type: "post",
+	url: form.attr("action"),
+	data: form.serialize(),
+	timeout: 7000,
+	success: function(data) {
+	    if (data.id !== null) {//success!
+		$('#saving').html("Saved "
+			+ data.body.split(/\s+/).filter(String).length
+			+ " words ("
+			+ getFormattedTime(new Date())
+			+ ")");
+		$('#todo').html('Everything is saved.');
+
+		if (form.attr("action") !== Routes.user_page_path(data.user_id,data.id))
+		{//after first save
+		    form.attr("action", Routes.user_page_path(data.user_id,data.id));
+		    form.append('<input name="_method" value="patch" type="hidden">');
+		}
+	    }else{
+		$('#saving').html("Oops ! Saving failed (server error)");
+
+	    }
+
+	},
+	error: function(request, status, err) {
+	    var reason;
+	    if(status == "timeout") reason="Are you online?";
+	    if(status == "error") reason="Technical error :( ";
+	    $('#saving').html("Oops ! Saving failed ("+reason+")");
+	}
+    });
+
+}
+
+
+/* Graphical stuff */
+function handleGraphics(e) {
+    $('#todo').html('Saving soon...');
+    body=e.currentTarget;
+    if (body.selectionStart >= body.value.lastIndexOf("\n")) {
+	$('html, body').animate({
+	    scrollTop: $(document).height() - $(window).height()
+	}, 1, 'swing');
+    }
+}

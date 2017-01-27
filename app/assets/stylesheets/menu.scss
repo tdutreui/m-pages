@@ -1,0 +1,53 @@
+
+#custom-bootstrap-menu.navbar-default {
+    border: none;
+    font: 30px $font-hand;
+    background-color: rgba(248, 248, 248, 1);
+    border-width: 1px;
+    border-radius: 4px;
+
+    .navbar-nav > {
+	li {
+	    p {
+		display: block;
+		padding: 5px;
+	    }
+	    a {
+		color: darkblue;
+
+		font-weight: bold;
+		&:hover, &:focus {
+		    font-style: italic;
+		}
+	    }
+	}
+    }
+
+    .navbar-toggle {
+	border-color: #ddd;
+
+	&:hover, &:focus {
+	    background-color: #ddd;
+	}
+
+	.icon-bar, &:hover .icon-bar, &:focus .icon-bar {
+	    background-color: #888;
+	}
+    }
+}
+
+
+.logo {
+    padding-bottom: 5px;
+
+    .morning {
+	color: black;
+	font: 40px $font-hand;
+	font-weight: bold;
+    }
+
+    .ink {
+	color: darkblue;
+	font: 40px $font-ink;
+    }
+}

@@ -1,0 +1,22 @@
+<%= javascript_include_tag "pages" %>
+<div class="row hand">
+    <%= render 'list' %>
+</div>
+<div class="row hand">
+    <div class="col-md-10 col-md-offset-1">
+	<%= form_for [current_user,@page], :html => {:id => 'current_page'} do |f| %>
+	    <h2><%= @page.date.to_formatted_s(:long_ordinal) %></h2>
+	    <% if @current_user.pages.count <= 2 %>
+		<div class="alert alert-warning alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    Feeling stuck ? Have a look at <%= link_to 'the beginners tips', welcome_faq_path(anchor: "tips"), class: "alert-link" %> !
+		</div>
+	    <% end %>
+	    <%= f.text_area :body, class: 'form-control', rows: '8', autocomplete: "off", autocorrect: "off", autocapitalize: "off", spellcheck: "false" %>
+	<% end %>
+	<p class="pull-right status">
+	<span id="saving">Your text is autosaved. Write something!</span><br/>
+	<span id="todo"></span>
+	</p>
+    </div>
+</div>

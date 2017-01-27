@@ -1,0 +1,11 @@
+<p>
+Password reset:
+</p>
+<%= form_for @user,url:password_resets_path do |f| %>
+    <%= render 'shared/errors',object: @user %>
+    <div class="form-group">
+	<%= f.label :email %>
+	<%= f.email_field :email, class: 'form-control' %>
+    </div>
+    <%= f.submit "Send email", class:'btn' %>
+<% end %>

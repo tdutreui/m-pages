@@ -1,0 +1,33 @@
+<div class="jumbotron">
+    <div class="container">
+	<div class="row">
+	    <h3>Meet yourself</h3>
+
+	    <p>What are the morning pages? Put simply, pages of free writing, strictly stream-of-consciousness : <span class="quote">&ldquo;Oh, god, another morning. I have NOTHING to say. I need&#8230; blah blah&rdquo;.</span> They might also, more ingloriously, be called <span class="i">brain drain.</span>
+	    <br/>
+	    <span class="i">There is no wrong way to do morning pages. </span>Write down <span class="i">whatever</span> comes to mind. Nothing is too petty, too silly, too stupid, or too weird to be included.</p>
+
+	    <h3>Your writings are private</h3>
+
+	    <p>The morning pages are not supposed to sound smart &ndash; although sometimes they might. Most times they won&rsquo;t, and nobody will ever know except you. Nobody is allowed to read your pages except you.</p>
+
+	    <h3>Benefits are legion</h3>
+
+	    <p>Free writing is an easy and active form of meditation. In minutes it makes you feel great and once a habit boosts your creativity, bettering mental health and capacities. The morning pages are often negative, self-pitying, repetitive, stilted or babyish, angry or bland &ndash; even silly sounding. <b>Good !</b> All that angry, whiny, petty stuff that you write down in the morning stands between you and you.  Worrying about the job, the laundry, the funny knock in the car, the weird look in your lover&rsquo;s eye &ndash; this stuff eddies through our subconscious and muddies our days. Get it on the page.</p>
+
+	    <p class="i pull-right">Inspired from <a href="http://www.goodreads.com/book/show/615570.The_Artist_s_Way">The artist&rsquo;s way</a> (Julia Cameron), a world-class creativity recovery course.</p>
+	</div>
+	<div class="row text-center">
+	    <div>
+		<%= 
+		    if !current_user
+			"#{link_to 'Sign Up', new_user_path, class: 'btn btn-primary btn-lg'}
+			or #{link_to 'Just try it!', new_temp_new_user_path, class: 'btn btn-success btn-lg'}".html_safe
+		    else
+			link_to 'Write now !', user_pages_path(current_user), class: 'btn btn-primary btn-lg'
+			end
+ %>
+
+	</div>
+	</div>
+    </div>
